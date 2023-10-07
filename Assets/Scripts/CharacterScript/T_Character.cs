@@ -10,6 +10,7 @@ public class T_Character : Base_Character
     {
         S_defendCheckMachine();
         GetHit();
+        Attack();
         base.Update();
     }
 
@@ -44,9 +45,27 @@ public class T_Character : Base_Character
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        EnemyComponent enemy = other.GetComponent<EnemyComponent>();
+
+        if (enemy != null)
+        {
+            inAttackRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        inAttackRange = false;
+    }
+
     public override void Attack()
     {
         //Debug.Log("Here is TAttack");
+        if (inAttackRange)
+        {
 
+        }
     }
 }
