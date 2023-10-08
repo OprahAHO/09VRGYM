@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2248.3655, g: 2340.0862, b: 3384.6997, a: 1}
+  m_IndirectSpecularColor: {r: 2248.76, g: 2340.432, b: 3384.9731, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tauntValue: 1
-  tauntAddValue: 2
+  tauntAddValue: 10
   tauntlimitValue: 16
   healthlimitValue: 0
   healthValue: 10
@@ -150,8 +150,11 @@ MonoBehaviour:
   isDirtLoving: 0
   isAttacked: 0
   isGetHit: 0
+  inAttackRange: 1
   defendProb: 50
---- !u!65 &6173925
+  enemy: {fileID: 486229604}
+  enemyName: enemy
+--- !u!65 &6173927
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,12 +169,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.4881825, y: 2.2477436, z: 2.136021}
-  m_Center: {x: -0.08417767, y: 1.436224, z: 0.56801045}
+  m_Size: {x: 1, y: 3.057994, z: 1}
+  m_Center: {x: 0, y: 1.028997, z: 0}
 --- !u!1 &34779956
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +211,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -562,11 +565,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6173922}
+      addedObject: {fileID: 6173927}
     - targetCorrespondingSourceObject: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6173925}
+      addedObject: {fileID: 6173922}
   m_SourcePrefab: {fileID: 100100000, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
 --- !u!1 &432432459
 GameObject:
@@ -629,6 +632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.015867183
@@ -639,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.79
+      value: 9.94
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -704,15 +711,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a367171d95735934bbc897cb52f0f4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tauntValue: 0
-  tauntAddValue: 1
-  tauntlimitValue: 15
+  tauntValue: 1
+  tauntAddValue: 2
+  tauntlimitValue: 16
   healthlimitValue: 0
   healthValue: 10
-  attackValue: 0
+  attackValue: 3
   isDirtLoving: 0
   isAttacked: 0
   isGetHit: 0
+  inAttackRange: 0
 --- !u!1 &1823688464
 GameObject:
   m_ObjectHideFlags: 0
