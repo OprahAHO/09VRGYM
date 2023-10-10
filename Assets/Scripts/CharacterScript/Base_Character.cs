@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class Base_Character : MonoBehaviour
 {
     [Header("Base_Property")]
-    
-    public float tauntValue = 1;
+    //public float tauntValue = 1;
 
     public float tauntAddValue = 2;
     public float tauntlimitValue = 16;
@@ -21,69 +21,85 @@ public class Base_Character : MonoBehaviour
     public bool isGetHit = false;
     public bool inAttackRange = false;
 
+    private string highestTauntAttacker = null;
+    private float highestTauntValue = 0f;
+
+    public List<GameObject> CharacterObject;
+    GameObject attackerObject;
+
     protected Dictionary<string, float> tauntValues = new Dictionary<string, float>();
 
-    private void Start()
-    {
-        tauntValues.Add("Enemy", 1f);
-        tauntValues.Add("T", 1f);
-    }
+    
     public void IncreaseTaunt(string attackerName, float tauntAValue)
     {
-        if (!tauntValues.ContainsKey(attackerName))
+        if (tauntValues.ContainsKey(attackerName))
         {
-            tauntValues.Add(attackerName, tauntAValue);
-            Debug.Log("Here is AddTauntAValue");
+            tauntValues[attackerName] += tauntAValue;
+            //Debug.Log(tauntValues[attackerName]);
         }
         else
         {
-            tauntValues[attackerName] += tauntAValue;
-            Debug.Log(tauntValues[attackerName]);
+            //tauntValues.Add(attackerName, tauntAValue);
+            Debug.Log("It's not the key in the dictionary.");
         }
     }
 
-    public void TauntAdd(float amount)
-    {
-        tauntValue += amount;
-    }
     public void HealthAdd(float amount)
     {
         healthValue += amount;
     }
 
-    
-
     protected virtual void Update()
     {
-        TauntValueCheckMachine();
         HealthValueCheckMachine();
-        
+        CheckHighestTauntAttacker();
     }
-    public string TauntValueCheckMachine()
+
+    public void CheckHighestTauntAttacker()
     {
-        /*if(tauntValue >= tauntlimitValue)
-        {
-            Attack();
-        }*/
-        var query = tauntValues
-            .Where(pair => pair.Value > tauntlimitValue)
-            .OrderByDescending(pair => pair.Value);
-        var result = query.FirstOrDefault();
+        highestTauntAttacker = null;
+        highestTauntValue = 0f;
 
-        if (result.Key != null)
+        foreach (var kvp in tauntValues)
         {
-            return result.Key;
+            if (kvp.Value >= tauntlimitValue && kvp.Value > highestTauntValue)
+            {
+                highestTauntAttacker = kvp.Key;
+                highestTauntValue = kvp.Value;
+            }
+        }
+
+        // 如果有攻击者满足条件，执行相应操作
+        if (!string.IsNullOrEmpty(highestTauntAttacker))
+        {
+            Debug.Log("Player taunts " + highestTauntAttacker + " with taunt value " + highestTauntValue);
+
+            // 这里可以根据需要执行其他操作，比如获取攻击者的Object信息
             
-        }
-        else
-        {
-            // 如果没有满足条件的键，返回 null 或者其他你认为合适的值
-            return null;
-        }
-        
 
+            if(highestTauntAttacker == "Enemy")
+            {
+                attackerObject = CharacterObject[0];
+                attackerObject.GetComponent<EnemyBase_Character>().Attack();
+                Debug.Log("Enemy attack T");
+
+            }
+            else if (highestTauntAttacker == "T")
+            {
+                attackerObject = CharacterObject[1];
+                attackerObject.GetComponent<T_Character>().Attack();
+            }
+            else if (highestTauntAttacker == "DPS1")
+            {
+                attackerObject = CharacterObject[2];
+                attackerObject.GetComponent<DPS1_Character>().Attack();
+            }
+            else
+            {
+                Debug.Log("no highestTauntAttacker");
+            }
+        }
     }
-  
     public void HealthValueCheckMachine() 
     {
         if (healthValue <= healthlimitValue)

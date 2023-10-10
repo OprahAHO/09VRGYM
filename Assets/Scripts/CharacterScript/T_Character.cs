@@ -7,16 +7,28 @@ public class T_Character : Base_Character
 {
     [Header("T_Property")]
     public float defendProb = 20;//防御成功的概率
-    public float Enemy_tauntValue = 1;
+    //public float Enemy_tauntValue = 1;
 
     //下面这两个后面要传参过来
-    public GameObject enemy;
-    public string enemyName = "enemy";
-    private float inDammage;
-    private float intauntValue;
+   
+    public string enemyName = "Enemy";
+
+
+    private float inDammage = 3;
+    private float intauntValue = 2;
+
+    public void Start()
+    {
+        tauntValues.Add("Enemy", 1f);
+        tauntValues.Add("T", 1f);
+        tauntValues.Add("DPS1", 1f);
+
+    }
+
     protected override void Update()
     {
         S_defendCheckMachine(inDammage, intauntValue);
+        //Attack()这个函数是要从Update删掉的，现在是方便测试所以随便写了个触发
         Attack();
         base.Update();
     }
@@ -33,7 +45,7 @@ public class T_Character : Base_Character
                 Debug.Log("defend Success");
             }
             isAttacked = false;
-            if(enemy!=null)
+            if(CharacterObject[0]!= null)
             {
                 GetHit(enemyName, HValue, TValue);
                 Debug.Log("here is gethit");
@@ -52,11 +64,6 @@ public class T_Character : Base_Character
             HealthAdd(-HValue);
             isGetHit = false;
         }
-    }
-
-    private void S_SmellDiffuse()
-    {
-
     }
 
     //这俩OnTriggerEnter没有被使用，这里需要一个新的判断逻辑来判断是否是敌人且敌人是否处于攻击范围
@@ -84,10 +91,14 @@ public class T_Character : Base_Character
         {
             if(Input.GetKeyDown(KeyCode.H))
             {
-                
-                enemy.GetComponent<EnemyBase_Character>().GetHit(enemyName, attackValue, tauntAddValue);
+
+                CharacterObject[0].GetComponent<EnemyBase_Character>().GetHit(enemyName, attackValue, tauntAddValue);
                 Debug.Log("here is attack");
             }
         }
+    }
+    public void Skill_Smell()
+    {
+
     }
 }
