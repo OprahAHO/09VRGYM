@@ -17,6 +17,8 @@ public class T_Character : Base_Character
     private float inDammage = 3;
     private float intauntValue = 2;
 
+    public bool S_skillIsUsed = false;
+
     public void Start()
     {
         tauntValues.Add("Enemy", 1f);
@@ -30,6 +32,7 @@ public class T_Character : Base_Character
         S_defendCheckMachine(inDammage, intauntValue);
         //Attack()这个函数是要从Update删掉的，现在是方便测试所以随便写了个触发
         Attack();
+        Skill_Smell();
         base.Update();
     }
 
@@ -67,16 +70,23 @@ public class T_Character : Base_Character
     }
 
     EnemyBase_Character enemy;
+    DPS1_Character dPS1_Character;
 
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("inTrigger");
         enemy = other.GetComponent<EnemyBase_Character>();
+        dPS1_Character = other.GetComponent<DPS1_Character>();
 
         if (enemy != null)
         {
             inAttackRange = true;
             Debug.Log("inAttackRange");
+
+        }
+        if((enemy != null || dPS1_Character != null ) && S_skillIsUsed)
+        {
+
         }
     }
 
@@ -104,6 +114,9 @@ public class T_Character : Base_Character
     }
     public void Skill_Smell()
     {
-
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            S_skillIsUsed = true;
+        } 
     }
 }
