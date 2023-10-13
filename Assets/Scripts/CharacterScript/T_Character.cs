@@ -66,10 +66,12 @@ public class T_Character : Base_Character
         }
     }
 
-    //这俩OnTriggerEnter没有被使用，这里需要一个新的判断逻辑来判断是否是敌人且敌人是否处于攻击范围
-    private void OnTriggerEnter(Collider other)
+    EnemyBase_Character enemy;
+
+    public void OnTriggerEnter(Collider other)
     {
-        EnemyBase_Character enemy = other.GetComponent<EnemyBase_Character>();
+        Debug.Log("inTrigger");
+        enemy = other.GetComponent<EnemyBase_Character>();
 
         if (enemy != null)
         {
@@ -78,10 +80,13 @@ public class T_Character : Base_Character
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
-        inAttackRange = false;
-        Debug.Log("outAttackRange");
+        if (enemy != null)
+        {
+            inAttackRange = false;
+            Debug.Log("outAttackRange");
+        }     
     }
 
     public override void Attack()

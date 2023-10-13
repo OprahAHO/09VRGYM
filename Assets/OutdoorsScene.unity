@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2248.7756, g: 2340.4163, b: 3384.9927, a: 1}
+  m_IndirectSpecularColor: {r: 2247.841, g: 2339.887, b: 3384.2349, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -149,13 +149,12 @@ MonoBehaviour:
   isDirtLoving: 0
   isAttacked: 0
   isGetHit: 0
-  inAttackRange: 1
+  inAttackRange: 0
   CharacterObject:
   - {fileID: 486229604}
   - {fileID: 6173919}
   - {fileID: 645721269}
   defendProb: 50
-  enemy: {fileID: 486229604}
   enemyName: Enemy
 --- !u!65 &6173927
 BoxCollider:
@@ -172,12 +171,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.057994, z: 1}
-  m_Center: {x: 0, y: 1.028997, z: 0}
+  m_Size: {x: 4, y: 2.5, z: 4}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!1 &34779956
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.015867183
+      value: 3.16
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -649,23 +648,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.94
+      value: 5.72
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.70449233
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0.7097117
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -673,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: -90.423
       objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -691,6 +690,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 486229608}
     - targetCorrespondingSourceObject: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
         type: 3}
       insertIndex: -1
@@ -722,12 +725,33 @@ MonoBehaviour:
   isDirtLoving: 0
   isAttacked: 0
   isGetHit: 0
-  inAttackRange: 1
+  inAttackRange: 0
   CharacterObject:
   - {fileID: 486229604}
   - {fileID: 6173919}
   - {fileID: 645721269}
   T_tauntValue: 1
+--- !u!65 &486229608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486229604}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 2.5, z: 4}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!1001 &634851820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -827,7 +851,7 @@ MonoBehaviour:
   isDirtLoving: 0
   isAttacked: 0
   isGetHit: 0
-  inAttackRange: 1
+  inAttackRange: 0
   CharacterObject:
   - {fileID: 486229604}
   - {fileID: 6173919}
